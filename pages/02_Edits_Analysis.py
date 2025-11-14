@@ -2,11 +2,8 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 
-# The actual page content is executed here by Streamlit
 st.title("Crystal Zhao: Popular Articles - Edits Analysis")
 st.markdown("---")
-
-# Retrieve shared data from the Home page's session state
 
 DATA_FILE_KEY = 'st02_data'
 
@@ -18,8 +15,6 @@ else:
 if df is None or df.empty:
     st.warning("Data not loaded. Please ensure the Home Page ran successfully and the data files exist.")
 else:
-    # Your original logic continues here
-    # --- Student Introductory Section ---
     st.header("1. Introduction and Project Goal")
     st.markdown("""
         **Data Description:** This dataset contains the most recent 500 edits for 2 of the most popular CC articles on Wikipedia: Greta Thunberg and Paris Accord Agreement.
@@ -30,7 +25,6 @@ else:
     """)
     st.markdown("---")
     
-    # --- Analysis Controls (Moved from Sidebar to Main Page) ---
     col_control, col_spacer = st.columns([1, 3])
     with col_control:
         article_filter = st.selectbox(
@@ -38,17 +32,15 @@ else:
             df['article'].unique()
         )
     
-    # Filter data for the selected team (as Home Team)
+    # Filter data for selected article
     article = df[df['article'] == article_filter].copy()
     article_df = pd.DataFrame(article)
     
-    # --- Analysis Content ---
     if article_df.empty:
         st.info(f"No information in '{article_filter}' to analyze.")
     else:
         st.subheader(f"2. Monthly Edit Frequency for {article_filter}")
         
-        # Prepare data for st.line_chart: set 'year_month' as index
         article_monthly_edits = article_df.groupby('year_month')['revid'].count().reset_index(name='edits')
         df_chart_data = article_monthly_edits.set_index('year_month')[['edits']]
         
