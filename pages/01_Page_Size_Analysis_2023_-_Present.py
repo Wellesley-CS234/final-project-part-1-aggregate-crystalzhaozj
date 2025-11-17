@@ -196,13 +196,14 @@ if language:
     }
     )
 
+
 st.divider()
 
 # analysis no 4
 st.header("Article Counts per Language Within Selected Page Size Range")
 st.write(
     "Use the slider below to select a page size range (in bytes). "
-    "The bar chart shows how many articles each language has "
+    "The table and bar chart show how many articles each language has "
     "within that range."
 )
 
