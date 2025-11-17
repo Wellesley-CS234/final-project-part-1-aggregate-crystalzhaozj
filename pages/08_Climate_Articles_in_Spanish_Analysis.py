@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
+#import matplotlib.pyplot as plt
+#import seaborn as sns
 import plotly.express as px
 
 # The actual page content is executed here by Streamlit
@@ -56,7 +56,7 @@ sorted2=data2.sort_values(by='views (log)',ascending=False)['Country'].tolist()
 if selection == options[0]:
 #Making plot
     st.subheader(options[0])
-    plt.figure(figsize=(20,6))
+    #plt.figure(figsize=(20,6))
 
     figure= px.bar(data, x='Country',y='views (log)',color='language_type',hover_data=['views'],category_orders={"Country": sorted})
     figure.update_layout(barmode='group',xaxis_tickangle=90, height=600, width=1000)
